@@ -1,15 +1,21 @@
 import serial
 from datetime import date
 import time
-import code_500 as s_500
-import code_2000 as s_2000
 import numpy as np
 
 """
-Required functions for reading pressure from the load cell and data calibration
+Required functions for reading the pressure from the load cell 
 """
 
 def setup():
+    """
+    Setting up the serial connection between the load cell and PC, and setting up file paths.
+
+    Returns:
+        data_handle: Serial connection instance
+        file, file_t, file_FE: Files to save data
+    """
+
     serialPort = 'COM3'
     baudRate = 9600
     data_handle = serial.Serial(serialPort, baudRate)
@@ -28,31 +34,19 @@ def setup():
 
 
 def set_to_zero(data_handle):
-    # data_handle = setup()
+    """
+    Sending interface-specific commands to set the initial measurement to zero.
+    """
+
     data_handle.write('x'.encode())
     data_handle.write('1'.encode())
     data_handle.write('x'.encode())
 
-
-def calibrate(data):
-    d = 92 / 1000
-    slope_500 = s_500.slope_reader()
-    slope_2000 = s_2000.slope_reader()
-    slope_average = (slope_500[0] + slope_500[1] + slope_500[2] +
-                     slope_2000[0] + slope_2000[1] + slope_2000[2]) / 6
-
-    intercept_500 = s_500.intercept_reader()
-    intercept_2000 = s_2000.intercept_reader()
-    intercept_average = (intercept_500[0] + intercept_500[1] + intercept_500[2] +
-                         intercept_2000[0] + intercept_2000[1] + intercept_2000[2]) / 6
-    error_test = slope_average * data + intercept_average
-    lc_corrected = data - error_test
-    lc_data_final = (lc_corrected / (np.pi * (d ** 2) / 4)) / 1000
-    return lc_data_final
-
-
 def read_and_parse(data_handle):
-    # data_handle = setup()
+    """
+    Reading and parsing pressure and time data.
+    """
+
     while True:
         line = data_handle.readline()
         line_sec = line.strip().split(b',')
@@ -64,14 +58,11 @@ def read_and_parse(data_handle):
             except:
                 pass
 
-
 def save_data(file, file_t, pressure, time):
-    # data_handle = setup()
+    """
+    Saving the pressure and time data.
+    """
 
-    # while True:
-    # line = data_handle.readline()
-    # line_sec = line.strip().split(b',')
-    # data_loadcell = float(line_sec[1])
     file.write(str(pressure))
     file.write('\n')
     file_t.write(str(time))
@@ -79,34 +70,10 @@ def save_data(file, file_t, pressure, time):
 
 
 def save_data_FE(file_FE, F, E, t):
-    # data_handle = setup()
+    """
+    Saving the speed, extrusion, and time data.
+    """
 
-    # while True:
-    # line = data_handle.readline()
-    # line_sec = line.strip().split(b',')
-    # data_loadcell = float(line_sec[1])
     file_FE.write('speed: {}, extrusion factor: {}, time: {}'.format(F, E, t))
     file_FE.write('\n')
 
-
-# def loadcell_main():
-#     handle, file, file_t = setup()
-#     set_to_zero(handle)
-#     while True:
-#         pressure, time = read_and_parse(handle)
-#         save_data(file, file_t, pressure, time)
-
-
-# def save_data_pid(file, pressure, state):
-#     file.write(str(pressure))
-#     file.write('\n')
-#     state[0] = state[1]
-#     state[1] = pressure
-
-
-# def loadcell_main_pid(state, q):
-#     handle, file = setup()
-#     set_to_zero(handle)
-#     while True:
-#         pressure = read_and_parse()
-#         save_data_pid(file, pressure, state)

@@ -1,5 +1,3 @@
-from datetime import date
-import time
 import loadcell_python as lc
 import webscraper_speed_extrusion as FE
 import pid_controller as pid

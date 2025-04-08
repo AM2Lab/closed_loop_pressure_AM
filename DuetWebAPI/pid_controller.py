@@ -5,7 +5,13 @@ PID controller
 """
 
 def pid_control(pressure_first, pressure_next, deltaP, deltaP_sum, previous_extrusion):
-    # delta P ideal is zero
+    """
+    A PID controller
+
+    Returns:
+        float, float: speed and extrusion factor
+    """
+
     print("LOG: pid_control: pressure_1st={}, pressure_2={}, deltap={}, deltapsum={}, prev_ext={}".format(pressure_first, pressure_next, deltaP, deltaP_sum, previous_extrusion
                                                                                            ))
     kp = 0.5                     #0.5, 0.2, 0       1, 0.2, 0                

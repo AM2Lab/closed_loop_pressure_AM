@@ -1,8 +1,6 @@
 from datetime import date
-import time
 import loadcell_python as lc
 import webscraper_speed_extrusion as FE
-import pid_controller as pid
 from duetwebapi import DuetWebAPI as DWA
 import numpy as np
 
@@ -59,4 +57,4 @@ def loadcell_main():
         i = i + 1
 
 
-loadcell_main()  # uncomment it and run this code when you don't have a laser on board
+loadcell_main()  
