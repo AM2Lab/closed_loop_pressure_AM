@@ -32,7 +32,7 @@ Speed and extrusion will be retrieved from web interface by API reading with ```
 [DuetWebAPI](https://github.com/AndyEveritt/DuetWebAPI?tab=MIT-1-ov-file) is used to communicate with the duet board to send the speed and extrusion commands. All added files including running codes should be located in this folder along with DuetWebAPI files. 
 
 ## Data Acquisition with LJX8200 Keyence Laser Profiler with LJX8002 Controller through Ethernet (TCP/IP) in Python
-The following Python code is developed to receive and save data from Keyence [LJX8200](https://www.keyence.com/products/measure/laser-2d/lj-x8000/models/lj-x8200/) Laser Profiler with [LJX8002](https://www.keyence.com/products/measure/laser-2d/lj-x8000/models/lj-x8002/) controller. The communication is through TCP/IP (Ethernet). ```main_run.py``` is the main code to run the laser profiler to get the data of geometry after the process (offline). <br>
+The following Python code is developed to receive and save data from Keyence [LJX8200](https://www.keyence.com/products/measure/laser-2d/lj-x8000/models/lj-x8200/) Laser Profiler with [LJX8002](https://www.keyence.com/products/measure/laser-2d/lj-x8000/models/lj-x8002/) controller. The communication is through TCP/IP (Ethernet). ```laser_reading.py``` is the main code to run the laser profiler to get the data of geometry after the process (offline). <br>
 
 ## How to set up the system?
 ### Hardware
@@ -61,7 +61,7 @@ Through these lines of code, we can set up the socket and we request to get data
 The message that is sent to the server to get data is set to T1 as T1 command in the controller requests the output data that was set in the software.<br>
 
 ## Main codes
-```main_loadcell_woPID.py``` should run for the tests without PID as it doesn't include the PID controller and ```main_loadcell_wPID.py``` should run for the tests with PID. 
+```main_loadcell_woPID.py``` should run for the tests without PID, as it doesn't include the PID controller, and ```main_loadcell_wPID.py``` should run for the tests with PID. 
 
 
   
