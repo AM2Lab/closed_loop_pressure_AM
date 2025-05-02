@@ -1,7 +1,7 @@
 import numpy as np
 
 """
-PID controller
+This code is developed by Mahsa Rabiei (mrabiei@princeton.edu) for a PID control system.
 """
 
 def pid_control(pressure_first, pressure_next, deltaP, deltaP_sum, previous_extrusion):
@@ -14,7 +14,7 @@ def pid_control(pressure_first, pressure_next, deltaP, deltaP_sum, previous_extr
 
     print("LOG: pid_control: pressure_1st={}, pressure_2={}, deltap={}, deltapsum={}, prev_ext={}".format(pressure_first, pressure_next, deltaP, deltaP_sum, previous_extrusion
                                                                                            ))
-    kp = 0.5                     #0.5, 0.2, 0       1, 0.2, 0                
+    kp = 0.5                           
     kd = 0.2
     ki = 0
 

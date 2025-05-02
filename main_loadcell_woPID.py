@@ -1,11 +1,10 @@
-from datetime import date
 import loadcell_python as lc
 import webscraper_speed_extrusion as FE
 from duetwebapi import DuetWebAPI as DWA
 import numpy as np
 
 """
-Main test without PID
+This code is developed by Mahsa Rabiei (mrabiei@princeton.edu) to run a test without a control system.
 """
 
 def loadcell_main():
@@ -18,12 +17,14 @@ def loadcell_main():
     time_list = []
     deltaP_list = []
     print("LOG INFO: INITIAL SETUP DONE")
+
     # Main loop that executes PID control
     while True:
 
         if i == 0:
             # Getting pressure data
             pressure, t = lc.read_and_parse(handle)
+
             # Saving pressure data
             t = t / 1000  # ms to s
             pressure = lc.calibrate(pressure * 4.4482216153)  # kpa
@@ -34,8 +35,10 @@ def loadcell_main():
             i = i + 1
             print("LOG INFO: FIRST PRESSURE DATA READING")
             continue
-        # Getting pressure data
+
+        # Reading pressure data
         pressure, t = lc.read_and_parse(handle)
+
         # Saving pressure data
         t = t / 1000
         pressure = lc.calibrate(pressure * 4.4482216153)  # to newtons
@@ -56,5 +59,5 @@ def loadcell_main():
 
         i = i + 1
 
-
-loadcell_main()  
+if __name__ == '__main__':
+    loadcell_main()  

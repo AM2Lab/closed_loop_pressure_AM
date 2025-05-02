@@ -5,10 +5,11 @@ from duetwebapi import DuetWebAPI as DWA
 import numpy as np
 
 """
-Main test with PID
+This code is developed by Mahsa Rabiei (mrabiei@princeton.edu) to run a test with a PID control system.
 """
 
 def loadcell_main():
+
     # Initial setup
     printer = DWA('http://Scara')
     handle, file, file_t, file_FE = lc.setup()
@@ -20,12 +21,14 @@ def loadcell_main():
     speed_factor_list = []
     extrusion_factor_list = []
     print("LOG INFO: INITIAL SETUP DONE")
+
     # Main loop that executes PID control
     while True:
 
         if i == 0:
-            # Getting pressure data
+            # Reading pressure data
             pressure, t = lc.read_and_parse(handle)
+
             # Saving pressure data
             t = t / 1000  # ms to s
             pressure = lc.calibrate(pressure * 4.4482216153)  # kpa
@@ -38,8 +41,10 @@ def loadcell_main():
             i = i + 1
             print("LOG INFO: FIRST PRESSURE DATA READING")
             continue
-        # Getting pressure data
+
+        # Reading pressure data
         pressure, t = lc.read_and_parse(handle)
+
         # Saving pressure data
         t = t / 1000
         pressure = lc.calibrate(pressure * 4.4482216153)  # to newtons
@@ -49,7 +54,8 @@ def loadcell_main():
         deltaP_list.append(pressure_list[i] - pressure_list[i-1])
         deltaP_sum = np.sum(deltaP_list)
         print("LOG INFO: ANOTHER PRESSURE READING, t: {}".format(t))
-        # PID and sending the change (activation based on a given condition) # COMMENT IT FOR WITHOUT PID TEST
+
+        # PID and Commanding the output (activation based on a given condition) 
         if pressure_list[i] - pressure_list[i - 1] >= 0.3 and t >= 60:
             print("LOG INFO: ENTERED PID LOOP")
             _, previous_extrusion = FE.get_speed_extrusion()
@@ -73,12 +79,14 @@ def loadcell_main():
         # Get the speed and extrusion rate to plot
         speed, extrusion = FE.get_speed_extrusion()
         print("speed: {}".format(speed))
+
         # Time may change considerably between loadcell measurement and PID, so we measure the time again
         _, t = lc.read_and_parse(handle)
+
         # Saving the speed and extrusion data
         lc.save_data_FE(file_FE, speed, extrusion, t)      
 
         i = i + 1
 
-
-loadcell_main()  # uncomment it and run this code when you don't have a laser on board
+if __name__ == '__main__':
+    loadcell_main()  

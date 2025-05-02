@@ -1,10 +1,9 @@
 import serial
 from datetime import date
 import time
-import numpy as np
 
 """
-Required functions for reading the pressure from the load cell 
+This code is developed by Mahsa Rabiei (mrabiei@princeton.edu) to read and parse data from an OMEGA LC103B-1K loadcell.
 """
 
 def setup():
@@ -21,13 +20,13 @@ def setup():
     data_handle = serial.Serial(serialPort, baudRate)
     today = date.today()
     now = time.localtime()
-    path = 'C:/Users/LabUser/Desktop/loadcell_data_' + str(
+    path = 'loadcell_data_' + str(
         today) + '_' + str(time.strftime("%H-%M-%S", now)) + '.txt'
     file = open(path, 'w')
-    path_t = 'C:/Users/LabUser/Desktop/loadcell_time_' + str(
+    path_t = 'loadcell_time_' + str(
         today) + '_' + str(time.strftime("%H-%M-%S", now)) + '.txt'
     file_t = open(path_t, 'w')
-    path_FE = 'C:/Users/LabUser/Desktop/speed_extrusion_' + str(
+    path_FE = 'speed_extrusion_' + str(
         today) + '_' + str(time.strftime("%H-%M-%S", now)) + '.txt'
     file_FE = open(path_FE, 'w')
     return data_handle, file, file_t, file_FE

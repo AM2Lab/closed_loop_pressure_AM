@@ -2,7 +2,7 @@ from urllib.request import urlopen
 import json
 
 """
-This code is an API reader that retrieves speed and extrusion data from a web interface.
+This code is developed by Mahsa Rabiei (mrabiei@princeton.edu) as an API reader to retrieve speed and extrusion data from the SCARA's web interface.
 """
 
 def get_speed_extrusion():
