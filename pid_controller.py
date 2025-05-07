@@ -1,7 +1,7 @@
 import numpy as np
 
 """
-This code is developed by Mahsa Rabiei (mrabiei@princeton.edu) for a PID control system.
+This code is developed by Mahsa Rabiei (mrabiei@princeton.edu) for a PID controller.
 """
 
 def pid_control(pressure_first, pressure_next, deltaP, deltaP_sum, previous_extrusion):
