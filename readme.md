@@ -1,4 +1,4 @@
-# Pressure-based Feedback Control System (PID) for SCARA 3D Potter 
+# Pressure-based Closed-Loop Control for Extrusion-based Additive Manufacturing 
 The developed code runs a pressure-based PID controller on SCARA 3D potter. Please note that only the main parts of the code are provided.
 
 ## PID Controller
