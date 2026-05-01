@@ -18,7 +18,7 @@
 ---
 
 <p align="center">
-  <img src="Graphical Abstract.jpg" width="1000">
+  <img src="graphical_abstract.jpg" width="1000">
 </p>
 
 ---
