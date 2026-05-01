@@ -1,8 +1,9 @@
 <div align="center">
+  
 <h1>Pressure-based Closed-Loop Control for Extrusion-based Additive Manufacturing 
 </h1>
 <p>
-  <a href="[https://opg.optica.org/oe/fulltext.cfm?uri=oe-34-5-7429"><img src="https://img.shields.io/badge/Journal-Optics_Express_2026-orange?style=flat-square (https://www.sciencedirect.com/science/article/pii/S0926580525005345)" alt="Automation in Construction"></a>
+  <a href="https://www.sciencedirect.com/science/article/pii/S0926580525005345"><img src="https://img.shields.io/badge/Journal-Automation_in_Construction-blue?style=flat-square" alt="Optics Express 2026"></a>
 </p>
 
 <p>
@@ -14,8 +15,8 @@
   <sup>1</sup> <sup>2</sup> Department of Civil and Environmental Engineering, Princeton University, Princeton, New Jersey 08544, USA<br>
 </p>
 
+</div>
 
----
 
 <p align="center">
   <img src="graphical_abstract.jpg" width="1000">
@@ -23,8 +24,6 @@
 
 ---
 
-    
-This code is developed to run a pressure-based PID controller on the SCARA 3D potter. Please note that only the main parts of the code are provided.
 ## PID Controller
 Under specific pressure change conditions (more than 0.3 kPa), PID controller is triggered. Pressure change is the input of the controller and speed factor (change in speed) is the output of the controller. 
 
